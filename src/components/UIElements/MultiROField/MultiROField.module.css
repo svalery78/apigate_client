@@ -1,0 +1,15 @@
+.multylineFieldContainer {
+  border: 1px solid var(--colorROFieldsBorder);
+  display: flex;
+  padding: 0.5rem;
+  width: stretch;
+  height: 300px;
+}
+
+.multiFieldText {
+  width: stretch;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}

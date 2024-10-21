@@ -1,0 +1,32 @@
+/*Кнопка, которая выглядит как <a>*/
+.btn {
+    max-width: stretch;
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    cursor: pointer;
+    outline: none;
+    font-size: var(--fontSizeDefault);
+    font-family: var(--fontFamilyDefault);
+    text-align: left;
+}
+
+.btn:hover {
+   outline: none;
+}
+
+.btn:active {
+    border: none;
+    outline: none;
+}
+
+.btn:focus {
+    border: none;
+    outline: none;
+}
+
+.btnText {
+    width: stretch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

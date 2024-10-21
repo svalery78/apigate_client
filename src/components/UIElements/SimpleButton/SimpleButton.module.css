@@ -1,0 +1,35 @@
+.btn {
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(12, 115, 254, 1);
+    color: rgba(255, 255, 255, 1);
+  
+ 
+    position: static;
+    width: 222.67px;
+    height: 35px;
+    left: 10px;
+    top: 10px;
+
+    font-family: Pragmatica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 107.5%;
+
+    text-align: center;
+    color: #FFFFFF;
+ }
+  .btn:focus {
+    outline: none;
+  }
+
+  .btnText {
+    width: stretch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  .btnText.noWrap {
+    white-space: nowrap;
+  }

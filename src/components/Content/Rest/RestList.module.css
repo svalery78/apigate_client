@@ -1,0 +1,44 @@
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: rgb(0, 0, 0);
+    font-size: small;
+    font-family: sans-serif;
+    font-style: initial;
+}
+.buttonsGrid {
+    display: grid;
+    grid-template-columns: max-content max-content max-content max-content max-content auto;
+}
+
+.showErrors {
+    margin-left: 10px;
+    width: fit-content;
+}
+.list {
+    display: flex;
+    margin: 0%;
+    padding: 0%;
+    justify-content: flex-start;
+}
+
+.mainTable {
+    table-layout:fixed;
+}
+
+.tableCell {
+    height: 40px;
+    overflow: hidden;
+    max-width: 300px;
+}
+
+.dataCell {
+    margin-left: 5px;
+}
+
+.filter {
+    width: 100%;
+    padding-left: 5px;
+}

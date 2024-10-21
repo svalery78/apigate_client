@@ -1,0 +1,57 @@
+.grid {
+    display: grid;
+    grid-template-columns: 4fr 9fr;
+    padding: 3px;
+    align-items: flex-start;
+    margin: 5px;
+}
+
+.label {
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.textField {
+    margin: 3px
+}
+.header {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.btnPanel {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    grid-gap: 200px;
+    padding: 10px 20px 0px 20px ;
+    margin: 20px 50px 10px 50px;
+    align-items: flex-start;
+}
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.innerFieldsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: space-between
+}
+
+.field {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.error {
+    font-size: 16px;
+    color: red;
+    margin-bottom: 0
+}

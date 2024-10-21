@@ -1,0 +1,43 @@
+.btn {
+    width: 100px;
+    height: 25px;
+    margin:  5px;
+}
+.buttonsContainer{
+    margin-bottom: 10px;
+}
+
+.label {
+    display: flex;
+    justify-content: flex-start;
+    width: max-content;
+    padding: 5px;
+    font-family: sans-serif Pragmatica;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    /* black */
+    color: #1B1919;
+}
+.fieldsGrid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2rem;
+    justify-content: start; 
+    align-items: center;
+    row-gap: 1rem;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+    font-family: sans-serif Pragmatica;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    /* black */
+    color: #1B1919;
+}

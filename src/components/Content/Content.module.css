@@ -1,0 +1,46 @@
+
+.main {
+    /* display: flex;
+    justify-content: flex-start; */
+    margin: 10px;
+    padding: 0 auto;
+    /* max-width: 1200px;
+    min-height: 500px; */
+    /* width: 180vh;
+    height: 95vh;  */
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+/* .header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+} */
+.grid {
+    display: grid;
+    margin: 0px;
+    padding: 0px;
+    grid-template-columns: 1fr 11fr;
+}
+.navbarContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.contentContainer {
+    margin: 0 auto;
+    padding: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+/* Дальше стили для картинки на пустой странице */
+.gridImage {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr;
+    margin-top: -50px;
+}
+.image {
+    width: 500px;
+}

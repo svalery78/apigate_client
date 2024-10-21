@@ -1,0 +1,97 @@
+.grid {
+    display: grid;
+    grid-template-columns: 4fr 1fr 9fr;
+    align-items: center;
+}
+.totalCountGrid {
+    display: grid;
+    grid-template-columns: 9fr 4fr;
+    align-items: center;
+}
+.gridTitle {
+    display: grid;
+    grid-template-columns: 4fr  9fr;
+    align-items: center;
+}
+.gridD {
+    display: grid;
+    grid-template-columns: 4fr 1fr 9fr;
+    align-items: center;
+}
+.fieldLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding-right: 7px;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    text-align: left;
+}
+.gridTitle label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding-right: 7px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+}
+.field {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.title {
+    display: flex;
+    justify-content: senter;
+    font-size: 20px;
+}
+.SimpleTextField {
+    margin-top: 3px
+}
+
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btnPanel {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    padding: 10px;
+    align-items: flex-start;
+}
+.select {
+    display: flex;
+    justify-content: center ;
+    align-items: center;
+}
+.dialog {
+    overflow-y: 'auto';
+}
+.dialogContent {
+    overflow-y: 'auto';
+}
+.selectField {
+    margin:1px;
+    padding: 0px;
+}
+
+.checkbox {
+    margin-left: -12px; /*Выравнивание относительно других полей. Невидивая область вокруг чекбокса = 12px с каждой стороны*/
+}
+.p {
+    
+    font-size: 20px;
+    color: red
+}
+.error {
+    font-size: 16px;
+    color: red;
+    margin-bottom: 0
+}

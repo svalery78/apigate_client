@@ -1,0 +1,26 @@
+.navbar {
+    display: grid;
+    justify-content: flex-start;
+    margin: 0px;
+    padding: 0px;
+    grid-template-rows: 4fr 4fr 4fr 4fr;
+    background-color: none;
+    width: 170px;
+    text-align: center;
+    color: rgb(192, 65, 65)
+}
+.item {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    padding: 5px;
+}
+.btn {
+    max-width: 150px;
+    font-family: Georgia, serif;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 28px;
+    color: white;
+    /* white-space: normal; */
+}

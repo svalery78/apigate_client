@@ -1,0 +1,5 @@
+.message {
+    font-size: var(--fontSizeLarge);
+    font-family: var(--fontFamilyDefault);
+    font-weight: normal;
+}

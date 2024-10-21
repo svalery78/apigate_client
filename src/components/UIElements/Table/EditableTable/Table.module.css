@@ -1,0 +1,21 @@
+.table {
+    /*min-width: 90vw;*/
+    font-size: 14px;
+    border: 1px solid #4883FF; 
+    border-radius: 3px;
+    width: 100%;
+}
+
+.tr {
+    color: white; 
+    background: rgba(12, 115, 254, 1); 
+    font-weight: normal;
+}
+.th {
+    font-weight: normal;
+    padding: 3px; 
+    border-radius: 2px;
+}
+/*.table > tbody > tr > :last-child{
+    width: 30px;
+}*/

@@ -1,0 +1,59 @@
+.addUserTable, .addUserTableWhithAction, .addAccessRightTableWhithTwoAction {
+    width: 100%;
+    display: block;
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+}
+.actions, .twoActions {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    gap: 5px;
+}
+.addUserTableWhithTwoAction > div > table > tbody > tr > *,
+.addAccessRightTableWhithTwoAction > div > table > tbody > tr > *,
+.addAddtionalRightTableWhithTwoAction > div > table > tbody > tr > *{
+    vertical-align: top;
+}
+/*КЦ, ЦК, РГ cell*/
+.addAccessRightTableWhithTwoAction > div > table > tbody > tr > :nth-child(5),
+.addAccessRightTableWhithTwoAction > div > table > tbody > tr > :nth-child(4),
+.addAccessRightTableWhithTwoAction > div > table > tbody > tr > :nth-child(3){
+    max-width: 10vw;
+}
+/*Организация*/
+.addUserTableWhithTwoAction > div > table > tbody > tr > :nth-child(6){
+    min-width: 15vw;
+}
+.addAddtionalRightTableWhithTwoAction > div > table > tbody > tr > :nth-child(2){
+    max-width: 10vw;
+}
+.addUserTableWhithTwoAction > div > table > tbody > tr > :last-child,
+.addAccessRightTableWhithTwoAction > div > table > tbody > tr > :last-child,
+.addAddtionalRightTableWhithTwoAction > div > table > tbody > tr > :last-child, /*последний cell*/
+.twoActions {
+    width: 60px;
+}
+.addUserTableWhithAction > div > table > tbody > tr > :last-child, /*последний cell*/
+.actions {
+    width: 30px;
+}
+
+.label{
+    font-family: var(--fontFamilyDefault);  
+    font-weight: 400;
+    font-size: var(--fontSizeLarge) !important;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+}
+.redStar,
+.redBtn > rect,
+.redBtn > path {
+    color:#C13838;
+}
+.grayBtn > g > rect,
+.grayBtn > g > path,
+.grayBtn > path {
+    stroke: lightgray!important;
+}

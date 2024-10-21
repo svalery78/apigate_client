@@ -1,0 +1,36 @@
+.header {
+    display: grid;
+    grid-template-columns: 2fr 9fr 1fr;
+    margin: 10px;
+}
+.currentHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+    font-family: sans-serif Pragmatica;
+    color: lightcoral;
+    font-size: 20px;
+    line-height: 20px;
+
+}
+.title{
+    /* api Gate */
+    display: block;
+    justify-content: flex-start;
+    width: max-content;
+    margin: 10px;
+    padding-left: 15px;
+    font-family: sans-serif Pragmatica;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 28px;
+    /* identical to box height */
+    text-transform: uppercase;
+    /* black */
+    color: #1B1919;
+}
+.logout {
+    padding: 10px;
+}

@@ -1,0 +1,9 @@
+.spinnerText {
+    font-size: large;
+    font-weight: bold;
+    margin-top: 1em;
+  }
+
+.spinner {
+  width: 100%;
+}

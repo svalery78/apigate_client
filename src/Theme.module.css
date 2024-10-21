@@ -1,0 +1,8 @@
+:root {
+  --colorROFieldsBorder: #2876EB;
+  --colorLinkButtonBlue: #2977EC;
+  --colorLinkHoverBlue: #069;
+  --fontFamilyDefault: 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif; /* Шрифты по умолчанию */
+  --fontSizeDefault: 16px; /* Обычный текст */
+  --fontSizeLarge: 16px;
+}

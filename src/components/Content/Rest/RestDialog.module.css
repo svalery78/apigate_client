@@ -1,0 +1,34 @@
+.grid {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    padding: 3px;
+    align-items: flex-start;
+}
+
+.label {
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.textField {
+    margin: 3px;
+}
+
+.dialogTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectField {
+    width: 100%;
+}
+
+.field {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

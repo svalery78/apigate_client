@@ -1,0 +1,39 @@
+.downArrowIcon {
+  width: 10px; 
+  height: 10px;
+}
+
+.downArrowIconContainer {
+  position: absolute;
+  left: 30px;
+}
+
+.newLEDIcon {
+  width: 10px; 
+  height: 10px;
+}
+
+.newLEDIconContainer {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+}
+
+.iconWithTextContainer {
+  display: grid;
+  grid-template-columns: auto;
+  justify-items: center;
+  cursor: pointer;
+  max-height: var(--heigthMainHeader);
+}
+
+.iconWithTextContainer .labelForIcon {
+  white-space: nowrap;
+}
+
+/*position нужен для того, чтобы отцентрировать только иконку с текстом, а иконку-стрелку как придаток справа приклеить*/
+.iconWithTextContainer .iconContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
