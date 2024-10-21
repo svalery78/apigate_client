@@ -151,7 +151,7 @@ const SearchDialog = ({ ...props }) => {
 
                                     {/* <div className={s.grid}>
                                         <label className={s.label}>Комментарий</label>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemSourceComment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
+                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemSourceСomment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
 
                                     <div className={s.grid}>
@@ -180,7 +180,7 @@ const SearchDialog = ({ ...props }) => {
                                     </div>
                                     {/* <div className={s.grid}>
                                         <label className={s.label}>Комментарий</label>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemAddresseeComment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
+                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemAddresseeСomment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
                                         <label className={s.label}>Вложения</label>

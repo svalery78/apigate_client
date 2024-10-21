@@ -54,13 +54,13 @@ const ObjectList = (props) => {
       // { Header: 'СИ-ID', accessor: 'SystemSourceID' },
       { Header: 'СИ-Название', accessor: 'SystemSourceName' },
       { Header: 'СИ-Код объекта', accessor: 'SystemSourceObjCode' },
-      // { Header: 'СИ-Комментарий', accessor: 'SystemSourceComment' },
+      // { Header: 'СИ-Комментарий', accessor: 'SystemSourceСomment' },
       // { Header: 'СИ-Вложения', accessor: 'SystemSourceAttach', Cell: props => <div title={props.row.original.SystemSourceAttach}>{props.row.original.SystemSourceAttach}</div> },
 
       // { Header: 'СП', accessor: 'SystemAddresseeName' },
       { Header: 'СП-СТП', accessor: 'SystemAddresseeSTPName' },
       { Header: 'СП-Код Объекта', accessor: 'SystemAddresseeObjCode' },
-      // { Header: 'СП-Комментарий', accessor: 'SystemAddresseeComment' },
+      // { Header: 'СП-Комментарий', accessor: 'SystemAddresseeСomment' },
     ], []
   );
 

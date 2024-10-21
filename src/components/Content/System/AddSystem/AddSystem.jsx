@@ -1,12 +1,14 @@
-import React from "react";
+import React from 'react';
 import { Dialog, DialogContent, DialogTitle, IconButton, makeStyles } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import s from '../SystemDialog.module.css'
 import { Formik, Form } from 'formik';
 import OverlaySpinner from '../../../UIElements/OverlaySpinner/OverlaySpinner';
-import { SimpleTextField, getSimpleTextProps } from '../../../UIElements/SimpleText/SimpleText'
-import { getSimpleReactSelectProps, SimpleReactSelectField } from '../../../UIElements/SimpleReactSelect/SimpleReactSelect'
-import { setFieldsAsRequired } from '../../../../utils/validate'
+import { SimpleTextField, getSimpleTextProps } from '../../../UIElements/SimpleText/SimpleText';
+import { getSimpleReactSelectProps, SimpleReactSelectField } from '../../../UIElements/SimpleReactSelect/SimpleReactSelect';
+import { setFieldsAsRequired, getRequiredFields } from '../../../../utils/validate';
+import StructureInfo from '../StructureInfo/StructureInfo';
+import { getSimpleCheckboxProps, SimpleCheckbox } from '../../../UIElements/SimpleCheckbox/SimpleCheckbox';
 
 const AddSystem = (props) => {
     const reactSelectStyles = {
@@ -45,25 +47,28 @@ const AddSystem = (props) => {
                 <CloseIcon />
             </IconButton>
         </DialogTitle>
-        <DialogContent style={{ overflow: "initial" }}>
+        <DialogContent style={{ overflow: 'initial' }}>
             <Formik
                 enableReinitialize
                 initialValues={{
-                    _id: ' ',
-                    name: '',
-                    type: '',
-                    UserId: '',
-                    ResponsibleFIO: '',
-                    ResponsibleEmail: '',
-                    ResponsiblePhone: '',
-                    WSUrlBase: '',
-                    WSUrlAttach: '',
-                    AuthType: 'Basic',
-                    WSLogin: '',
-                    WSPassword: '',
+                    _id: undefined,
+                    name: undefined,
+                    type: undefined,
+                    UserId: undefined,
+                    ResponsibleFIO: undefined,
+                    ResponsibleEmail: undefined,
+                    ResponsiblePhone: undefined,
+                    WSUrlBase: undefined,
+                    WSUrlAttach: undefined,
+                    AuthType: undefined,
+                    WSLogin: undefined,
+                    WSPassword: undefined,
                     WSHeader: null,
-                    StpWSUrlPath: '',
-                    DataStructure: ''
+                    StpWSUrlPath: undefined,
+                    DataStructure: undefined,
+                    noReply: false
+                    // chatId: undefined,
+                    // parseMode: undefined
                 }}
                 onSubmit={(values) => {
                     let systemData = { ...values };
@@ -98,8 +103,7 @@ const AddSystem = (props) => {
                         errors.DataStructure = '*';
                     }
 
-                    return setFieldsAsRequired(['name', 'UserId', 'ResponsibleFIO', 'ResponsibleEmail', 'ResponsiblePhone',
-                        'WSUrlBase', 'AuthType'], values, errors); //'type', 
+                    return setFieldsAsRequired(getRequiredFields('system', values.DataStructure, values.type), values, errors);
                 }}
                 validateOnChange={false}
                 validateOnBlur={false}
@@ -107,6 +111,7 @@ const AddSystem = (props) => {
                 {({
                     values,
                     errors,
+                    touched,
                     handleChange,
                     setFieldValue
                 }) => {
@@ -161,83 +166,57 @@ const AddSystem = (props) => {
                                     {errors.DataStructure && errors.DataStructure === '*' && <p className={s.error}>Поле 'Структура' не заполнено</p>}
                                     {errors.WSHeader && errors.WSHeader === 'incorrectFormat' && <p className={s.error}>{'Поле WS.Заголовки заполнено не по формату. Требуемый формат: {"<название свойства>": "<значение>"}'}</p>}
                                     <div className={s.grid}>
-                                        <label htmlFor="name">Название</label>
+                                        <label htmlFor='name'>Название</label>
                                         <p className={s.p}>*</p>
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('name', { ...fieldProps, values, errors, handleChange, placeholder: 'Название', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
                                         <label className={s.label}>Тип</label>
                                         <p className={s.p}></p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('type', [' ', 'sm', 'json'], 
+                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('type', [' ', 'sm', 'json'],
                                             { ...reactSelectProps, ...{ setFieldValue: setFieldValueType } })} /></div>
                                     </div>
-                                    {values.type === 'json' &&  <div className={s.grid}>
-                                        <label className={s.label}>Структура</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('DataStructure', ['4me (json)'], { ...reactSelectProps })} /></div>
-                                    </div>}
+                                    {values.type === 'json' &&
+                                        <div className={s.grid}>
+                                            <label className={s.label}>Структура</label>
+                                            <p className={s.p}>*</p>
+                                            <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('DataStructure', ['4me (json)', 'telegram'], { ...reactSelectProps })} /></div>
+                                        </div>
+                                    }
+                                    <StructureInfo structureName={values.DataStructure}
+                                        values={values} errors={errors} handleChange={handleChange} reactSelectProps={reactSelectProps}
+                                        fieldProps={fieldProps} setFieldValueType={setFieldValueType} {...props}
+                                        setFieldValueAuthType={setFieldValueAuthType} multilineFieldProps={multilineFieldProps}
+                                    />
                                     <div className={s.grid}>
-                                        <label htmlFor="UserId">Системная УЗ</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('UserId', props.searchLists.userList.data, { ...reactSelectProps })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label htmlFor="ResponsibleFIO">Ответственный. ФИО</label>
+                                        <label htmlFor='ResponsibleFIO'>Ответственный. ФИО</label>
                                         <p className={s.p}>*</p>
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('ResponsibleFIO', { ...fieldProps, values, errors, handleChange, placeholder: 'Ответственный. ФИО', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
-                                        <label htmlFor="ResponsibleEmail">Ответственный. Email</label>
+                                        <label htmlFor='ResponsibleEmail'>Ответственный. Email</label>
                                         <p className={s.p}>*</p>
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('ResponsibleEmail', { ...fieldProps, values, errors, handleChange, placeholder: 'Ответственный. Email', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
-                                        <label htmlFor="ResponsiblePhone">Ответственный. Телефон</label>
+                                        <label htmlFor='ResponsiblePhone'>Ответственный. Телефон</label>
                                         <p className={s.p}>*</p>
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('ResponsiblePhone', { ...fieldProps, values, errors, handleChange, placeholder: 'Ответственный. Телефон', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
-                                        <label htmlFor="WSUrlBase">WS. UrlBase</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSUrlBase', { ...fieldProps, values, errors, handleChange, placeholder: 'WS. UrlBase', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label className={s.label} htmlFor="WSUrlAttach">WSUrlAttach</label>
+                                        <label className={s.label}>Не отправлять ответ</label>
+                                        <div></div>
+                                        <div className={s.checkbox}>
+                                            <SimpleCheckbox {...getSimpleCheckboxProps('noReply', { values, errors, touched, setFieldValue })} />
+                                        </div>
                                         <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSUrlAttach', { ...fieldProps, values, errors, handleChange, placeholder: 'WSUrlAttach', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label className={s.label}>Тип авторизации</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('AuthType', ['No auth', 'Basic'],
-                                            { ...reactSelectProps, ...{ setFieldValue: setFieldValueAuthType } })} /></div>
-                                    </div>
-                                    {values.AuthType === 'Basic' && <div className={s.grid}>
-                                        <label htmlFor="WSLogin">WS.Логин</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSLogin', { ...fieldProps, values, errors, handleChange, placeholder: 'WS.Логин', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>}
-                                    {values.AuthType === 'Basic' && <div className={s.grid}>
-                                        <label htmlFor="WSPassword">WS.Пароль</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSPassword', { ...fieldProps, values, errors, handleChange, type: 'password', placeholder: 'WS.Пароль', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>}
-                                    <div className={s.grid}>
-                                        <label htmlFor="WSHeader">WS.Заголовки</label>
-                                        <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSHeader', { ...multilineFieldProps, values, errors, handleChange, placeholder: 'WS.Заголовки', variant: 'outlined', multiline: true, rows: 6, rowsMax: 6 })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label htmlFor="StpWSUrlPath">STP WS.UrlPath</label>
-                                        <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('StpWSUrlPath', { ...fieldProps, values, errors, handleChange, placeholder: 'STP WS.UrlPath', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.btnPanel}>
-                                        <button className="btn btn-outline-secondary" type="submit"  >
+                                        <button className='btn btn-outline-secondary' type='submit'  >
                                             Сохранить
                                         </button>
                                         <br />
-                                        <button className="btn btn-outline-secondary" type="button" onClick={props.onClose} >
+                                        <button className='btn btn-outline-secondary' type='button' onClick={props.onClose} >
                                             Отмена
                                         </button>
                                     </div>

@@ -27,7 +27,7 @@ export const fieldMapping = {
     createdBefore: { name: 'date', operatorValue: '$lte' },
     SystemSourceID: { type: 'ObjectId', operatorValue: '=' },
     SystemSourceName: { name: 'SystemSourceID', type: 'ObjectId', operatorValue: '=' },
-    SystemSourceComment: { operatorValue: '$regex' },
+    SystemSourceСomment: { operatorValue: '$regex' },
     SystemAddresseeID: { type: 'ObjectId', operatorValue: '=' },
     SystemAddresseeSTPID: { type: 'ObjectId', operatorValue: '=' },
     SystemAddresseeObjCode: { operatorValue: '$regex' },

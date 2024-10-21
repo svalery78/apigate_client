@@ -67,18 +67,18 @@ const ObjectDialog = ({ data, ...props }) => {
                     DescriptionFull: data.DescriptionFull,
                     ContactFIO: data.ContactFIO,
                     ContactEmail: data.ContactEmail,
-                    ContactPhone: data.ContactPhone,
+                    ContactPhone: data.СontactPhone,
 
                     SystemSourceAttach: data.SystemSourceAttach,
                     SystemSourceID: data.SystemSourceID,
                     SystemSourceName: data.SystemSourceName,
                     SystemSourceObjCode: data.SystemSourceObjCode,
-                    SystemSourceComment: data.SystemSourceComment,
+                    SystemSourceСomment: data.SystemSourceСomment,
 
                     SystemAddresseeID: data.SystemAddresseeID,
                     SystemAddresseeSTPID: data.SystemAddresseeSTPID,
                     SystemAddresseeObjCode: data.SystemAddresseeObjCode,
-                    SystemAddresseeComment: data.SystemAddresseeComment,
+                    SystemAddresseeСomment: data.SystemAddresseeСomment,
                     SystemAddresseeAttach: data.SystemAddresseeAttach,
 
                     service: data.service,
@@ -93,14 +93,14 @@ const ObjectDialog = ({ data, ...props }) => {
                 validate={values => {
                     const errors = {};
                     const status = values.Status === 'Отклонен'
-                    const requredFields = !status ? ['Status'] : ['SystemAddresseeComment']
+                    const requredFields = !status ? ['Status'] : ['SystemAddresseeСomment']
                     return setFieldsAsRequired(requredFields
                         // 'id', 'date', 'Status', 'DescriptionShort',
                         // 'DescriptionFull', 'ContactFIO', 'ContactEmail'||'ContactPhone',
                         // 'SystemSourceID', 'SystemSourceName', 'SystemSourceObjCode',
                         // 'SystemAddresseeID', 'SystemAddresseeSTPID',
                         // 'SystemAddresseeObjCode', //TODO: Да, при переводе в статус «Зарегистрирован»
-                        // 'SystemAddresseeComment',  
+                        // 'SystemAddresseeСomment',  
                         , values, errors);
                 }}
                 validateOnChange={false}
@@ -144,7 +144,7 @@ const ObjectDialog = ({ data, ...props }) => {
                                     {errors.SystemAddresseeID && errors.SystemAddresseeID === '*' && <p className={s.error}>Поле 'Система. Название' не заполнено</p>}
                                     {errors.SystemAddresseeSTPID && errors.SystemAddresseeSTPID === '*' && <p className={s.error}>Поле 'СТП' не заполнено</p>}
                                     {errors.SystemAddresseeObjCode && errors.SystemAddresseeObjCode === '*' && <p className={s.error}>Поле 'Код Объекта' не заполнено</p>}
-                                    {values.Status === 'Отклонен' && errors.SystemAddresseeComment && errors.SystemAddresseeComment === '*' && <p className={s.error}>Поле 'Комментарий' не заполнено</p>}
+                                    {values.Status === 'Отклонен' && errors.SystemAddresseeСomment && errors.SystemAddresseeСomment === '*' && <p className={s.error}>Поле 'Комментарий' не заполнено</p>}
                                     <div className={s.grid}>
                                         <label htmlFor="date">Дата</label>
                                         <p className={s.p}></p>
@@ -211,9 +211,9 @@ const ObjectDialog = ({ data, ...props }) => {
                                     </div>
 
                                     <div className={s.grid}>
-                                        <label htmlFor="SystemSourceComment">Комментарий</label>
+                                        <label htmlFor="SystemSourceСomment">Комментарий</label>
                                         <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemSourceComment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
+                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemSourceСomment', { ...fieldProps, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
                                         <label htmlFor="SystemSourceAttach">Вложения</label>
@@ -239,9 +239,9 @@ const ObjectDialog = ({ data, ...props }) => {
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemAddresseeObjCode', { ...fieldProps, values, errors, handleChange, placeholder: 'Код Объекта', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
-                                        <label htmlFor="SystemAddresseeComment">Комментарий </label>
+                                        <label htmlFor="SystemAddresseeСomment">Комментарий </label>
                                         <p className={s.p}>{values.Status === 'Отклонен' ? '*' : ''}</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemAddresseeComment', { ...fieldProps, disabled: (values.Status === 'Отклонен') ? false : true, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
+                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('SystemAddresseeСomment', { ...fieldProps, disabled: (values.Status === 'Отклонен') ? false : true, values, errors, handleChange, placeholder: 'Комментарий', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     {/* <div className={s.grid}>
                                         <label htmlFor="SystemAddresseeAttach">Вложения</label>

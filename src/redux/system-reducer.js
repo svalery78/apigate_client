@@ -6,19 +6,22 @@ import { showAlert } from "./mainReducer";
 let initialState = {
     record: {
         data: {
-            _id: "",
-            name: "",
-            type: "",
-            UserId: "",
-            ResponsibleFIO: "",
-            ResponsibleEmail: "",
-            ResponsiblePhone: "",
-            WSUrlBase: "",
-            WSLogin: "",
-            WSPassword: "",
-            WSHeader: "",
-            StpWSUrlPath: "",
-            WSUrlAttach: {}
+            _id: undefined,
+            name: undefined,
+            type: undefined,
+            UserId: undefined,
+            ResponsibleFIO: undefined,
+            ResponsibleEmail: undefined,
+            ResponsiblePhone: undefined,
+            WSUrlBase: undefined,
+            WSLogin: undefined,
+            WSPassword: undefined,
+            WSHeader: undefined,
+            StpWSUrlPath: undefined,
+            WSUrlAttach: undefined,
+            chatId: undefined,
+            parseMode: undefined,
+            noReply: false
         },
         isLoading: false
     },

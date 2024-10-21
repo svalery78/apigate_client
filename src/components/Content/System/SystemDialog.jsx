@@ -6,7 +6,9 @@ import { Formik, Form } from 'formik';
 import OverlaySpinner from '../../UIElements/OverlaySpinner/OverlaySpinner';
 import { SimpleTextField, getSimpleTextProps } from '../../UIElements/SimpleText/SimpleText'
 import { getSimpleReactSelectProps, SimpleReactSelectField } from '../../UIElements/SimpleReactSelect/SimpleReactSelect'
-import { setFieldsAsRequired } from '../../../utils/validate'
+import { setFieldsAsRequired, getRequiredFields } from '../../../utils/validate';
+import StructureInfo from './StructureInfo/StructureInfo';
+import { getSimpleCheckboxProps, SimpleCheckbox } from '../../UIElements/SimpleCheckbox/SimpleCheckbox';
 
 const SystemDialog = ({ data, ...props }) => {
     const reactSelectStyles = {
@@ -59,9 +61,12 @@ const SystemDialog = ({ data, ...props }) => {
                     AuthType: data.AuthType,
                     WSLogin: data.WSLogin,
                     WSPassword: data.WSPassword,
-                    WSHeader: data.WSHeader ? JSON.stringify(data.WSHeader) : '',
+                    WSHeader: data.WSHeader ? JSON.stringify(data.WSHeader) : null,
                     StpWSUrlPath: data.StpWSUrlPath,
-                    DataStructure: data.DataStructure
+                    DataStructure: data.DataStructure,
+                    noReply: data.noReply
+                    //chatId: data.chatId,
+                    //parseMode: data.parseMode,
                 }}
                 onSubmit={(values) => {
                     let systemData = { ...values };
@@ -96,8 +101,9 @@ const SystemDialog = ({ data, ...props }) => {
                         errors.DataStructure = '*';
                     }
 
-                    return setFieldsAsRequired(['name', 'UserId', 'ResponsibleFIO', 'ResponsibleEmail', 'ResponsiblePhone',
-                        'WSUrlBase'], values, errors); // , 'WSLogin', 'WSPassword','type' - убрали при создании интегации с 4me 
+                    return setFieldsAsRequired(getRequiredFields('system', values.DataStructure, values.type), values, errors);
+                    //return setFieldsAsRequired(['name', 'UserId', 'ResponsibleFIO', 'ResponsibleEmail', 'ResponsiblePhone',
+                    //    'WSUrlBase'], values, errors); // , 'WSLogin', 'WSPassword','type' - убрали при создании интегации с 4me 
                 }}
                 validateOnChange={false}
                 validateOnBlur={false}
@@ -105,6 +111,7 @@ const SystemDialog = ({ data, ...props }) => {
                 {({
                     values,
                     errors,
+                    touched,
                     handleChange,
                     setFieldValue
                 }) => {
@@ -140,7 +147,7 @@ const SystemDialog = ({ data, ...props }) => {
                             setFieldValue('DataStructure', '');
                         }
                     }
-
+                    
                     return <Form>
                         <div>
                             <OverlaySpinner active={props.isLoading}>
@@ -165,19 +172,21 @@ const SystemDialog = ({ data, ...props }) => {
                                     <div className={s.grid}>
                                         <label className={s.label}>Тип</label>
                                         <p className={s.p}></p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('type', [' ', 'sm', 'json'], 
+                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('type', [' ', 'sm', 'json'],
                                             { ...reactSelectProps, ...{ setFieldValue: setFieldValueType } })} /></div>
                                     </div>
-                                    {values.type === 'json' &&  <div className={s.grid}>
-                                        <label className={s.label}>Структура</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('DataStructure', ['4me (json)'], { ...reactSelectProps })} /></div>
-                                    </div>}
-                                    <div className={s.grid}>
-                                        <label htmlFor='UserId'>Системная УЗ</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('UserId', props.searchLists.userList.data, { ...reactSelectProps })} /></div>
-                                    </div>
+                                    {values.type === 'json' &&
+                                        <div className={s.grid}>
+                                            <label className={s.label}>Структура</label>
+                                            <p className={s.p}>*</p>
+                                            <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('DataStructure', ['4me (json)', 'telegram'], { ...reactSelectProps })} /></div>
+                                        </div>
+                                    }
+                                    <StructureInfo structureName={values.DataStructure}
+                                        values={values} errors={errors} handleChange={handleChange} reactSelectProps={reactSelectProps}
+                                        fieldProps={fieldProps} setFieldValueType={setFieldValueType} {...props}
+                                        setFieldValueAuthType={setFieldValueAuthType} multilineFieldProps={multilineFieldProps}
+                                    />
                                     <div className={s.grid}>
                                         <label htmlFor='ResponsibleFIO'>Ответственный. ФИО</label>
                                         <p className={s.p}>*</p>
@@ -194,46 +203,12 @@ const SystemDialog = ({ data, ...props }) => {
                                         <div className={s.field}><SimpleTextField {...getSimpleTextProps('ResponsiblePhone', { ...fieldProps, values, errors, handleChange, placeholder: 'Ответственный. Телефон', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.grid}>
-                                        <label htmlFor='WSUrlBase'>WS. UrlBase</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSUrlBase', { ...fieldProps, values, errors, handleChange, placeholder: 'WS. UrlBase', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label className={s.label} htmlFor='WSUrlAttach'>WSUrlAttach</label>
-                                        <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSUrlAttach', { ...fieldProps, values, errors, handleChange, placeholder: 'WSUrlAttach', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label className={s.label}>Тип авторизации</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleReactSelectField className={s.selectField} {...getSimpleReactSelectProps('AuthType', ['No auth', 'Basic'],
-                                            { ...reactSelectProps, ...{ setFieldValue: setFieldValueAuthType } })} /></div>
-                                    </div>
-                                    {values.AuthType === 'Basic' && <div className={s.grid}>
-                                        <label htmlFor="WSLogin">WS.Логин</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSLogin', { ...fieldProps, values, errors, handleChange, placeholder: 'WS.Логин', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>}
-                                    {values.AuthType === 'Basic' && <div className={s.grid}>
-                                        <label htmlFor="WSPassword">WS.Пароль</label>
-                                        <p className={s.p}>*</p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSPassword', { ...fieldProps, values, errors, handleChange, type: 'password', placeholder: 'WS.Пароль', variant: 'outlined', size: 'small' })} /></div>
-                                    </div>}
-                                    <div className={s.grid}>
-                                        <label htmlFor='WSHeader'>WS.Заголовки</label>
-                                        <p className={s.p}></p>
-                                        {/* <TextField value={values.WSHeader} onChange={handleChange} name='WSHeader' placeholder='WS.Заголовки' variant='outlined' fullWidth required size='small' /> */}
-                                        {/* <div className={s.field}><SimpleTextField {...getSimpleTextProps('WSHeader', { ...fieldProps, values, errors, handleChange, placeholder: 'WS.Заголовки', variant: 'outlined', size: 'small' })} /></div> */}
-                                        {/* <JSONTree data={values.WSHeader || {}} /> */}
-                                        {/* <div className={s.field}><MultiROField value={values.WSHeader} className={s.multiROField} /></div> */}
-                                        <div className={s.field}>
-                                            <SimpleTextField {...getSimpleTextProps('WSHeader', { ...multilineFieldProps, values, errors, handleChange, placeholder: 'WS.Заголовки', variant: 'outlined', multiline: true, rows: 6, rowsMax: 6 })} />
+                                        <label className={s.label}>Не отправлять ответ</label>
+                                        <div></div>
+                                        <div className={s.checkbox}>
+                                            <SimpleCheckbox {...getSimpleCheckboxProps('noReply', { values, errors, touched, setFieldValue })} />
                                         </div>
-                                    </div>
-                                    <div className={s.grid}>
-                                        <label htmlFor='StpWSUrlPath'>STP WS.UrlPath</label>
                                         <p className={s.p}></p>
-                                        <div className={s.field}><SimpleTextField {...getSimpleTextProps('StpWSUrlPath', { ...fieldProps, values, errors, handleChange, placeholder: 'STP WS.UrlPath', variant: 'outlined', size: 'small' })} /></div>
                                     </div>
                                     <div className={s.btnPanel}>
                                         <button className='btn btn-outline-secondary' type='submit'  >

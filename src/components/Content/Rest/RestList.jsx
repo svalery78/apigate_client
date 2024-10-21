@@ -105,7 +105,7 @@ const RestList = (props) => {
           },
           Cell: ({ row }) => {
             return <div>
-              {row.depth === 0 && row.original.type !== 'Входящий' /*&& row.original.status === 'ERROR'*/ ? <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} /> : null}
+              {row.depth === 0 && row.original.type !== 'Входящий' && row.original.status === 'ERROR' ? <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} /> : null}
             </div>
           },
         },
